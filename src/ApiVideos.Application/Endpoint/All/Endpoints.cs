@@ -1,6 +1,3 @@
-using ApiVideos.Application.Endpoint.Interface;
-using ApiVideos.Application.Endpoint.Videos;
-
 namespace ApiVideos.Application.Endpoint.All;
 
 public static class Endpoints

@@ -1,6 +1,3 @@
-using ApiVideos.Application.Entities;
-using Microsoft.EntityFrameworkCore;
-
 namespace ApiVideos.Application.Context;
 
 public class ApiVideosContext(DbContextOptions<ApiVideosContext> options) : DbContext(options)

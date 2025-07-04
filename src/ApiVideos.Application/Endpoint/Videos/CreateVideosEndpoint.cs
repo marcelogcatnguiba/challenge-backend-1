@@ -1,8 +1,3 @@
-using ApiVideos.Application.Endpoint.Interface;
-using ApiVideos.Application.Entities;
-using ApiVideos.Application.Repository.Interface.Base;
-using FluentValidation;
-
 namespace ApiVideos.Application.Endpoint.Videos;
 
 public class CreateVideosEndpoint : IEndpoint

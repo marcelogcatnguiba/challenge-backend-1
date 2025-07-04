@@ -1,8 +1,3 @@
-using ApiVideos.Application.Context;
-using ApiVideos.Application.Entities;
-using ApiVideos.Application.Repository.Interface.Base;
-using Microsoft.EntityFrameworkCore;
-
 namespace ApiVideos.Application.Repository.Videos;
 
 public class VideosRepository(ApiVideosContext context) : IRepository<VideosEntity>

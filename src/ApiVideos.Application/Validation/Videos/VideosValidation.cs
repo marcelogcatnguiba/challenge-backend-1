@@ -1,6 +1,3 @@
-using ApiVideos.Application.Entities;
-using FluentValidation;
-
 namespace ApiVideos.Application.Validation.Videos;
 
 public class VideosValidation : AbstractValidator<VideosEntity>

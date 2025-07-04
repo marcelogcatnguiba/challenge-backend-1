@@ -1,7 +1,3 @@
-using ApiVideos.Application.Endpoint.Interface;
-using ApiVideos.Application.Entities;
-using ApiVideos.Application.Repository.Interface.Base;
-
 namespace ApiVideos.Application.Endpoint.Videos;
 
 public class DeleteVideosEndpoint : IEndpoint

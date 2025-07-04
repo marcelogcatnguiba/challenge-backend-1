@@ -1,4 +1,4 @@
-namespace ApiVideos.Application.Entities;
+namespace ApiVideos.Application.Entities.Videos;
 
 public class VideosEntity
 {

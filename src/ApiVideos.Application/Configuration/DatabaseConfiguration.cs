@@ -1,5 +1,3 @@
-using ApiVideos.Application.Context;
-
 namespace ApiVideos.Application.Configuration;
 
 public static class DatabaseConfiguration
