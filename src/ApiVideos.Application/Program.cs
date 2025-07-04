@@ -4,6 +4,7 @@ using ApiVideos.Application.Endpoint.All;
 using ApiVideos.Application.Entities;
 using ApiVideos.Application.Repository.Interface.Base;
 using ApiVideos.Application.Repository.Videos;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +16,8 @@ builder.Services.AddDbContext<ApiVideosContext>(x => x.UseSqlite("Data Source=Db
 builder.Services.CreateDatabase();
 
 builder.Services.AddScoped<IRepository<VideosEntity>, VideosRepository>();
+builder.Services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
+
 var app = builder.Build();
 
 app.MapEndpoins();

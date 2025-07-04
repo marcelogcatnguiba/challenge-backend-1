@@ -1,6 +1,7 @@
 using ApiVideos.Application.Endpoint.Interface;
 using ApiVideos.Application.Entities;
 using ApiVideos.Application.Repository.Interface.Base;
+using FluentValidation;
 
 namespace ApiVideos.Application.Endpoint.Videos;
 
@@ -10,21 +11,32 @@ public class CreateVideosEndpoint : IEndpoint
     {
         app.MapPost("/", CreateAsync)
             .Produces(StatusCodes.Status201Created)
-            .Produces(StatusCodes.Status400BadRequest);
-
+            .Produces<HttpValidationProblemDetails>(StatusCodes.Status400BadRequest);
     }
 
-    private static async Task<IResult> CreateAsync(VideosEntity entity, IRepository<VideosEntity> repository, CancellationToken cancellationToken)
+    private static async Task<IResult> CreateAsync(
+        VideosEntity entity,
+        IRepository<VideosEntity> repository,
+        IValidator<VideosEntity> validator,
+        CancellationToken cancellationToken)
     {
         try
         {
+            await validator.ValidateAndThrowAsync(entity, cancellationToken);
+
             await repository.CreateAsync(entity, cancellationToken);
 
             return Results.Created("/videos/{id}", entity);
         }
+        catch (ValidationException ex)
+        {
+            var errors = ex.Errors.ToDictionary(x => x.PropertyName, x => new [] { x.ErrorMessage });
+
+            return Results.ValidationProblem(errors, type: nameof(ValidationException), title: "Ocorreu um ou mais erros de validação");
+        }
         catch (Exception ex)
         {
-            return Results.BadRequest($"Erro requisição {ex.Message}");
+            return Results.BadRequest($"Erro requisição {ex.InnerException?.Message ?? ex.Message}");
         }
     }
 }
