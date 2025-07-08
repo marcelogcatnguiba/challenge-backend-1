@@ -18,6 +18,7 @@ builder.Services.AddScoped<IVideoRepository, VideosRepository>();
 builder.Services.AddScoped<IRepository<CategoriaEntity>, CategoriaRepository>();
 
 builder.Services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddAutoMapper(x => x.AddMaps(AppDomain.CurrentDomain.GetAssemblies()));
 
 var app = builder.Build();
 
