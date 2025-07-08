@@ -1,3 +1,5 @@
+using ApiVideos.Application.Endpoint.Categorias;
+
 namespace ApiVideos.Application.Endpoint.All;
 
 public static class Endpoints
@@ -9,11 +11,12 @@ public static class Endpoints
         endpoints
             .MapGroup("v1/videos")
             .WithTags("videos")
-            .MapEndpoint<GetAllVideosEndpoint>()
-            .MapEndpoint<GetByIdVideosEndpoint>()
-            .MapEndpoint<CreateVideosEndpoint>()
-            .MapEndpoint<UpdateVideosEndpoint>()
-            .MapEndpoint<DeleteVideosEndpoint>();
+            .MapEndpoint<VideosCrudEndpoint>();
+
+        endpoints
+            .MapGroup("v1/categorias")
+            .WithTags("categorias")
+            .MapEndpoint<CategoriaCrudEndpoint>();
     }
 
     private static IEndpointRouteBuilder MapEndpoint<T>(this IEndpointRouteBuilder app) where T : IEndpoint
