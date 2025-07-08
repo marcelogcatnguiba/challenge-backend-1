@@ -1,5 +1,4 @@
 using ApiVideos.Application.Entities.Base;
-using Microsoft.AspNetCore.Mvc;
 
 namespace ApiVideos.Application.Endpoint.Base;
 
@@ -8,28 +7,23 @@ public abstract class BaseCrudEndpoint<T> : IEndpoint, ICrudEndpoint<T> where T 
     public static void Map(IEndpointRouteBuilder app)
     {
         app.MapGet("/", GetAsync)
-            .Produces<List<T>>(StatusCodes.Status200OK)
-            .WithOrder(1);
+            .Produces<List<T>>(StatusCodes.Status200OK);
 
         app.MapGet("/{id}", GetByIdAsync)
             .Produces<T>(StatusCodes.Status200OK)
-            .Produces(StatusCodes.Status404NotFound)
-            .WithOrder(2);
+            .Produces(StatusCodes.Status404NotFound);
 
         app.MapPost("/", CreateAsync)
             .Produces(StatusCodes.Status201Created)
-            .Produces<HttpValidationProblemDetails>(StatusCodes.Status400BadRequest)
-            .WithOrder(3);
+            .Produces<HttpValidationProblemDetails>(StatusCodes.Status400BadRequest);
 
         app.MapPut("/", UpdateAsync)
             .Produces(StatusCodes.Status200OK)
-            .Produces(StatusCodes.Status400BadRequest)
-            .WithOrder(4);
+            .Produces(StatusCodes.Status400BadRequest);
 
         app.MapDelete("/", DeleteAsync)
             .Produces(StatusCodes.Status204NoContent)
-            .Produces(StatusCodes.Status400BadRequest)
-            .WithOrder(5);
+            .Produces(StatusCodes.Status400BadRequest);
     }
 
     public static async Task<IResult> CreateAsync(T entity, IRepository<T> repository, IValidator<T> validator, CancellationToken cancellationToken)
