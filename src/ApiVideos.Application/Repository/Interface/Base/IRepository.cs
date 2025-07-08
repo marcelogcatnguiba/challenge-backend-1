@@ -1,6 +1,8 @@
+using ApiVideos.Application.Entities.Base;
+
 namespace ApiVideos.Application.Repository.Interface.Base;
 
-public interface IRepository<T>
+public interface IRepository<T> where T : BaseEntity
 {
     Task<List<T>> GetAsync(CancellationToken cancellationToken);
     Task<T> GetByIdAsync(long id, CancellationToken cancellationToken);
