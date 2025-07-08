@@ -9,20 +9,25 @@ public class ApiVideosContext(DbContextOptions<ApiVideosContext> options) : DbCo
     {
         modelBuilder.Entity<VideosEntity>()
             .HasOne(x => x.Categoria)
-            .WithMany(x => x.Videos);
+            .WithMany(x => x.Videos)
+            .HasForeignKey(x => x.CategoriaId);
+
+        modelBuilder.Entity<VideosEntity>()
+            .Property(x => x.CategoriaId)
+            .HasDefaultValue(1L);
 
         modelBuilder.Entity<CategoriaEntity>()
             .HasData(
                 new CategoriaEntity
                 {
                     Id = 1,
-                    Titulo = "Terror",
+                    Titulo = "Livre",
                     Cor = "Azul"
                 },
                 new CategoriaEntity
                 {
                     Id = 2,
-                    Titulo = "Susto",
+                    Titulo = "Terror",
                     Cor = "Vermelho"
                 }
             );
