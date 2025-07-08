@@ -5,7 +5,7 @@ namespace ApiVideos.Application.Repository.Base;
 
 public abstract class BaseCrudRepository<T>(ApiVideosContext context) : IRepository<T> where T : BaseEntity
 {
-    private readonly ApiVideosContext _context = context;
+    protected readonly ApiVideosContext _context = context;
     private readonly DbSet<T> _dataSet = context.Set<T>();
 
     public async Task CreateAsync(T entity, CancellationToken cancellationToken)

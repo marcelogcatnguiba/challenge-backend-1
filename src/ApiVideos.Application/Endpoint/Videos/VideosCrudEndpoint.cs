@@ -3,7 +3,7 @@ using ApiVideos.Application.Endpoint.Base;
 
 namespace ApiVideos.Application.Endpoint.Videos;
 
-public class VideosCrudEndpoint : BaseCrudEndpoint<VideosEntity>
+public sealed class VideosCrudEndpoint : BaseCrudEndpoint<VideosEntity>
 {
     
 }

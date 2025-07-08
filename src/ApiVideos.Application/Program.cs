@@ -1,6 +1,7 @@
 using ApiVideos.Application.Configuration;
 using ApiVideos.Application.Endpoint.All;
 using ApiVideos.Application.Repository.Categoria;
+using ApiVideos.Application.Repository.Interface.Video;
 using ApiVideos.Application.Repository.Videos;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,8 @@ builder.Services.AddDbContext<ApiVideosContext>(x => x.UseSqlite("Data Source=Db
 builder.Services.CreateDatabase();
 
 builder.Services.AddScoped<IRepository<VideosEntity>, VideosRepository>();
+builder.Services.AddScoped<IVideoRepository, VideosRepository>();
+
 builder.Services.AddScoped<IRepository<CategoriaEntity>, CategoriaRepository>();
 
 builder.Services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());

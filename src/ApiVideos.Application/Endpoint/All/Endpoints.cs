@@ -11,12 +11,14 @@ public static class Endpoints
         endpoints
             .MapGroup("v1/videos")
             .WithTags("videos")
-            .MapEndpoint<VideosCrudEndpoint>();
+            .MapEndpoint<VideosCrudEndpoint>()
+            .MapEndpoint<VideosFiltroEndpoint>();
 
         endpoints
             .MapGroup("v1/categorias")
             .WithTags("categorias")
-            .MapEndpoint<CategoriaCrudEndpoint>();
+            .MapEndpoint<CategoriaCrudEndpoint>()
+            .MapEndpoint<CategoriaFiltroEndpoint>();
     }
 
     private static IEndpointRouteBuilder MapEndpoint<T>(this IEndpointRouteBuilder app) where T : IEndpoint
