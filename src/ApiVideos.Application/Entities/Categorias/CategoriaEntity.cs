@@ -1,9 +1,10 @@
+using ApiVideos.Application.Entities.Base;
+
 namespace ApiVideos.Application.Entities.Categorias;
 
-public class CategoriaEntity
+public class CategoriaEntity : BaseEntity
 {
-    public long Id { get; set; }
-    public string Titulo { get; set; } = null!;
-    public string Cor { get; set; } = null!;
+    public string Titulo { get; set; } = string.Empty;
+    public string Cor { get; set; } = string.Empty;
     public List<VideosEntity> Videos { get; set; } = [];
 }
