@@ -6,5 +6,5 @@ public class CategoriaEntity : BaseEntity
 {
     public string Titulo { get; set; } = string.Empty;
     public string Cor { get; set; } = string.Empty;
-    public List<VideosEntity> Videos { get; set; } = [];
+    public List<VideoEntity> Videos { get; set; } = [];
 }

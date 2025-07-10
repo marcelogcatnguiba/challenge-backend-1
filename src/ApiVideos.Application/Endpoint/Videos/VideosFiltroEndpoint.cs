@@ -9,7 +9,7 @@ public sealed class VideosFiltroEndpoint : IEndpoint
     public static void Map(IEndpointRouteBuilder app)
     {
         app.MapGet("/titulo/", GetByTituloAsync)
-            .Produces<List<VideosEntity>>(StatusCodes.Status200OK);
+            .Produces<List<VideoEntity>>(StatusCodes.Status200OK);
     }
 
     private static async Task<IResult> GetByTituloAsync([FromQuery] string? titulo, IVideoRepository repository, CancellationToken cancellationToken)

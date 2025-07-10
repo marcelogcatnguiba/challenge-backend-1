@@ -1,6 +1,6 @@
 namespace ApiVideos.Application.Validation.Videos;
 
-public class VideosValidation : AbstractValidator<VideosEntity>
+public class VideosValidation : AbstractValidator<VideoEntity>
 {
     public VideosValidation()
     {

@@ -5,7 +5,7 @@ using ApiVideos.Application.Response.Videos;
 
 namespace ApiVideos.Application.Endpoint.Videos;
 
-public sealed class VideosCrudEndpoint : BaseCrudEndpoint<VideosEntity, VideosRequest, VideosResponse>
+public sealed class VideosCrudEndpoint : BaseCrudEndpoint<VideoEntity, VideosRequest, VideosResponse>
 {
     
 }

@@ -8,7 +8,7 @@ public class VideosProfile : Profile
 {
     public VideosProfile()
     {
-        CreateMap<VideosEntity, VideosRequest>().ReverseMap();
-        CreateMap<VideosEntity, VideosResponse>().ReverseMap();
+        CreateMap<VideoEntity, VideosRequest>().ReverseMap();
+        CreateMap<VideoEntity, VideosResponse>().ReverseMap();
     }
 }

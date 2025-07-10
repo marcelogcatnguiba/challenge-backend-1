@@ -12,7 +12,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ApiVideosContext>(x => x.UseSqlite("Data Source=DbVideos.db"));
 builder.Services.CreateDatabase();
 
-builder.Services.AddScoped<IRepository<VideosEntity>, VideosRepository>();
+builder.Services.AddScoped<IRepository<VideoEntity>, VideosRepository>();
 builder.Services.AddScoped<IVideoRepository, VideosRepository>();
 
 builder.Services.AddScoped<IRepository<CategoriaEntity>, CategoriaRepository>();

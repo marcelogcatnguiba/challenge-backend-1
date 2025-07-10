@@ -2,17 +2,17 @@ namespace ApiVideos.Application.Context;
 
 public class ApiVideosContext(DbContextOptions<ApiVideosContext> options) : DbContext(options)
 {
-    public DbSet<VideosEntity> Videos { get; set; }
+    public DbSet<VideoEntity> Videos { get; set; }
     public DbSet<CategoriaEntity> Categorias { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<VideosEntity>()
+        modelBuilder.Entity<VideoEntity>()
             .HasOne(x => x.Categoria)
             .WithMany(x => x.Videos)
             .HasForeignKey(x => x.CategoriaId);
 
-        modelBuilder.Entity<VideosEntity>()
+        modelBuilder.Entity<VideoEntity>()
             .Property(x => x.CategoriaId)
             .HasDefaultValue(1L);
 
@@ -32,9 +32,9 @@ public class ApiVideosContext(DbContextOptions<ApiVideosContext> options) : DbCo
                 }
             );
 
-        modelBuilder.Entity<VideosEntity>()
+        modelBuilder.Entity<VideoEntity>()
             .HasData(
-                new VideosEntity
+                new VideoEntity
                 {
                     Id = 1,
                     Titulo = "Madrugada dos Mortos",
@@ -43,7 +43,7 @@ public class ApiVideosContext(DbContextOptions<ApiVideosContext> options) : DbCo
 
                     CategoriaId = 1
                 },
-                new VideosEntity
+                new VideoEntity
                 {
                     Id = 2,
                     Titulo = "A volta dos que nao foram",
