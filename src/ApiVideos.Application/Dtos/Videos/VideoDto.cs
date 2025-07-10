@@ -1,6 +1,6 @@
-namespace ApiVideos.Application.Response.Videos;
+namespace ApiVideos.Application.Dtos.Videos;
 
-public class VideosResponse
+public class VideoDto
 {
     public long Id { get; set; }
     public string Titulo { get; set; } = string.Empty;

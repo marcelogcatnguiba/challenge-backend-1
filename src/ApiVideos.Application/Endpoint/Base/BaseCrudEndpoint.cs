@@ -71,9 +71,13 @@ public abstract class BaseCrudEndpoint<TEntity, TRequest, TResponse>
         }
     }
 
-    public async static Task<IResult> GetAsync(IRepository<TEntity> repository, CancellationToken cancellationToken)
+    public async static Task<IResult> GetAsync(IRepository<TEntity> repository, IMapper mapper, CancellationToken cancellationToken)
     {
-        return Results.Ok(await repository.GetAsync(cancellationToken));
+        var entities = await repository.GetAsync(cancellationToken);
+
+        var result = mapper.Map<List<TResponse>>(entities);
+
+        return Results.Ok(result);
     }
 
     public async static Task<IResult> GetByIdAsync(long id, IRepository<TEntity> repository, CancellationToken cancellationToken)
