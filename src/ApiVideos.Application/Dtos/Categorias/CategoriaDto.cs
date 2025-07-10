@@ -1,6 +1,6 @@
-namespace ApiVideos.Application.Response.Categorias;
+namespace ApiVideos.Application.Dtos.Categorias;
 
-public class CategoriasResponse
+public class CategoriaDto
 {
     public long Id { get; set; }
     public string Titulo { get; set; } = string.Empty;
