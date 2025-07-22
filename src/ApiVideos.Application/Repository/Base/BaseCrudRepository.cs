@@ -23,9 +23,12 @@ public abstract class BaseCrudRepository<T>(ApiVideosContext context) : IReposit
         await _context.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task<List<T>> GetAsync(CancellationToken cancellationToken)
+    public async Task<List<T>> GetAsync(int pageNumber, int pageSize, CancellationToken cancellationToken)
     {
-        return await _dataSet.ToListAsync(cancellationToken);
+        return await _dataSet
+            .Skip((pageNumber - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync(cancellationToken);
     }
 
     public async Task<T> GetByIdAsync(long id, CancellationToken cancellationToken)

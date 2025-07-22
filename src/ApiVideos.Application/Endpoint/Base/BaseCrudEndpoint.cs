@@ -1,5 +1,6 @@
 using ApiVideos.Application.Entities.Base;
 using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ApiVideos.Application.Endpoint.Base;
 
@@ -71,9 +72,14 @@ public abstract class BaseCrudEndpoint<TEntity, TRequest, TResponse>
         }
     }
 
-    public async static Task<IResult> GetAsync(IRepository<TEntity> repository, IMapper mapper, CancellationToken cancellationToken)
+    public async static Task<IResult> GetAsync(
+        [FromQuery] int? pageNumber,
+        [FromQuery] int? pageSize,
+        IRepository<TEntity> repository,
+        IMapper mapper,
+        CancellationToken cancellationToken)
     {
-        var entities = await repository.GetAsync(cancellationToken);
+        var entities = await repository.GetAsync(pageNumber ?? 1, pageSize ?? 5, cancellationToken);
 
         var result = mapper.Map<List<TResponse>>(entities);
 
