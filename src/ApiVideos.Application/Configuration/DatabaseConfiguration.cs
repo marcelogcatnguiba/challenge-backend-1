@@ -8,5 +8,10 @@ public static class DatabaseConfiguration
         var context = scope.ServiceProvider.GetRequiredService<ApiVideosContext>();
 
         context?.Database.EnsureCreated();
+
+        if (context?.Database.HasPendingModelChanges() ?? false)
+        {
+            context?.Database.Migrate();
+        }
     }
 }

@@ -1,9 +1,12 @@
+using ApiVideos.Application.Entities.Usuario;
+
 namespace ApiVideos.Application.Context;
 
 public class ApiVideosContext(DbContextOptions<ApiVideosContext> options) : DbContext(options)
 {
     public DbSet<VideoEntity> Videos { get; set; }
     public DbSet<CategoriaEntity> Categorias { get; set; }
+    public DbSet<UsuarioEntity> Usuarios { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -52,6 +55,11 @@ public class ApiVideosContext(DbContextOptions<ApiVideosContext> options) : DbCo
 
                     CategoriaId = 2
                 }
+            );
+
+        modelBuilder.Entity<UsuarioEntity>()
+            .HasData(
+                new UsuarioEntity { Id = 1, Email = "admin@admin.com", Senha = "admin" }
             );
     }
 }
